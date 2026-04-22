@@ -1,34 +1,31 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from './assets/vite.svg'
-// import heroImg from './assets/hero.png'
-import './App.css';
-
-
+import {  Routes, Route } from 'react-router-dom';
+import Layout from './layouts/layoutes.tsx';
+import Dashboard from './pages/Dashboard.tsx';
+import Agents from './pages/Agents.tsx';
+import Fields from './pages/Fields.tsx';
+import Reports from './pages/Reports.tsx';
+import Login from './pages/auth/Login.tsx';
+import Register from './pages/auth/Register.tsx';
 
 function App() {
-  const [data, setData] = useState([])
+ // App.jsx
+ return(
 
-  const fetchDjango =  async ()=> {
-    const res = await axios.get("http://localhost:8000/api/create_view/");
-    setData(res.data)
-    console.log(res.data)
+  <Routes>
+  <Route path="/" element={<Layout /> }>
+    <Route path='/' element={<Dashboard />} />
+    <Route path="/agents" element={<Agents />} />
+    <Route path="/fields" element={<Fields />} />
+    <Route path="/reports" element={<Reports/>} />
 
-  }
-  useEffect(() =>{
-    fetchDjango()
-  },[])
+  </Route>
 
-  return(
-    <>
-   {Object.entries(data).map(([key, value]) => (
-      <li key={key}>
-        <strong>{key}:</strong> {value}
-      </li>
-    ))}
-    </>
+  <Route path="/login" element={<Login />}  />
+  <Route path="/register" element={<Register />}  />
+</Routes>
 
-  )
+ )
+
 }
 export default App
+
