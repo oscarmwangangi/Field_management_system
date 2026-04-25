@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-m5a6%9-va0d_7)j!%cpahn--^*bj)b^s@m(c)(wni#wuqnkigj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["your-backend.onrender.com", "http://localhost:8000/", "localhost"]
+ALLOWED_HOSTS = [ "https://field-management-system-f6rs.onrender.com", "http://localhost:8000/", "localhost"]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", 
