@@ -39,7 +39,7 @@ ALLOWED_HOSTS = ["your-backend.onrender.com", "http://localhost:8000/", "localho
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", 
-    "https://your-frontend-deployed-url.com", 
+    "https://field-management-system-f6rs.onrender.com", 
 ]
 # Application definition
 
