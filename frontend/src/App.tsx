@@ -6,18 +6,22 @@ import Fields from './pages/Fields.tsx';
 import Reports from './pages/Reports.tsx';
 import Login from './pages/auth/Login.tsx';
 import Register from './pages/auth/Register.tsx';
-
+import ProtectedRoute from './components/reusables/ProtectedRoute.tsx';
 function App() {
  // App.jsx
  return(
 
   <Routes>
+     <Route element={<ProtectedRoute />} >
   <Route path="/" element={<Layout /> }>
-    <Route path='/' element={<Dashboard />} />
-    <Route path="/agents" element={<Agents />} />
-    <Route path="/fields" element={<Fields />} />
-    <Route path="/reports" element={<Reports/>} />
+ 
 
+ 
+    <Route path='/admin/dashboard' element={<Dashboard />} />
+    <Route path="/admin/agents" element={<Agents />} />
+    <Route path="/admin/fields" element={<Fields />} />
+    <Route path="/admin/reports" element={<Reports/>} />
+ </Route>
   </Route>
 
   <Route path="/login" element={<Login />}  />

@@ -40,6 +40,13 @@ ALLOWED_HOSTS = []
 CORS_ALLOW_ALL_ORIGINS = True  
 # Application definition
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+   
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -115,6 +122,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mwangangioscar2016@gmail.com'
+EMAIL_HOST_PASSWORD = 'ociq kolo ksck eddu'
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/

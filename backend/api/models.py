@@ -1,16 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
+# class users(models.Model):
 
-class users(models.Model):
-
-    class Role(models.TextChoices):
-        ADMIN = 'admin','Admin'
-        AGENT = 'agent' ,'Agent'
+#     class Role(models.TextChoices):
+#         ADMIN = 'admin','Admin'
+#         AGENT = 'agent' ,'Agent'
         
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    role = models.CharField(max_length=10, choices=Role.choices, default=Role.AGENT)
-    created_at = models.DateTimeField(auto_now_add=True)
+#     name = models.CharField(max_length=100)
+#     email = models.EmailField(unique=True)
+#     password = models.CharField(max_length=100)
+#     role = models.CharField(max_length=10, choices=Role.choices, default=Role.AGENT)
+#     created_at = models.DateTimeField(auto_now_add=True)
 
 class fields(models.Model):
     class Status(models.TextChoices):
@@ -24,7 +24,7 @@ class fields(models.Model):
     planting_date = models.DateTimeField
     status = models.CharField(max_length=100, choices=Status.choices, default=Status.ACTIVE)
     created_at = models.DateTimeField(auto_now_add=True)
-    assigned_agent = models.ForeignKey(users,on_delete=models.SET_NULL,null=True,blank=True,related_name='fields')
+    assigned_agent = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='fields')
 
 class field_updates(models.Model):
     class Stages(models.TextChoices):
@@ -34,6 +34,6 @@ class field_updates(models.Model):
         HARVESTED = 'harvested','Harvested'
 
     field_id = models.ForeignKey(fields, on_delete=models.SET_NULL,null=True,blank=True)
-    updated_by = models.ForeignKey(users,on_delete=models.SET_NULL,null=True,blank=True)
+    updated_by = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
     notes = models.CharField(max_length=100)
     stages = models.CharField(max_length=100, choices=Stages.choices)

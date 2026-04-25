@@ -1,15 +1,24 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logout from '../constants/logout.ts';
+
 
 interface SidebarProps {
     isOpen: boolean,
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
-const sidebar = [
-  {lable:"Dashboard", to:"/"},
-  {lable:"Report", to:"/reports"},
-  {lable:"My fields", to:"/fields"},
-  {lable:"Agents", to:"/agents"},
+// Add this above your sidebar array
+interface SidebarItem {
+  lable: string;
+  to?: string;          // Optional: only for navigation items
+  onClick?: () => void; 
+}
+const sidebar: SidebarItem[] = [
+  {lable:"Dashboard", to:"/admin/dashboard"},
+  {lable:"Report", to:"/admin/reports"},
+  {lable:"My fields", to:"/admin/fields"},
+  {lable:"Agents", to:"/admin/agents"},
+ 
 ]
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   return (
@@ -30,7 +39,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
             return(
               <>
               <div key={index}>
-                <Link to={item.to}
+                <Link to={item.to ?? '/'}
                 className={`block hover:text-blue-400 whitespace-nowrap 
                   ${isActive ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -42,18 +51,21 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                 >
                 <div className="text-sm font-medium tracking-wide">
                   { item.lable}
+               
 
 
                 </div>
                
                 </Link>
+                
               </div>
+              
               </>
             )
 
           }
         )}
-
+        <button onClick={logout}>logout</button>
         
 
         </nav>
