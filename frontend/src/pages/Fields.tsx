@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const API = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8000";
 // const auth = () => ({ Authorization: `Bearer ${localStorage.getItem("access_token")}` });
 const isAdmin = () => localStorage.getItem("is_admin") === "true";
 const authHeader = () => ({
@@ -194,7 +194,6 @@ function LogUpdateModal({ field, onClose, onSuccess }: { field: Field; onClose: 
 // ── Field Card ────────────────────────────────────────────────────────────────
 function FieldCard({ field, agents, onRefresh }: { field: Field; agents: Agent[]; onRefresh: () => void }) {
   const [modal, setModal] = useState<"assign" | "update" | null>(null);
-  const sm = statusMeta[field.status] ?? statusMeta.active;
   const isAtRisk = field.status === "at_risk";
 
   return (

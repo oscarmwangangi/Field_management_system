@@ -1,11 +1,8 @@
-import type { ReactNode } from 'react';
 import { useState } from 'react';
 import Sidebar from "../components/reusables/Sidebar.tsx";
 import { Outlet } from 'react-router-dom';
 
-interface LayoutProps {
-    children?: React.ReactNode;
-}
+
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(true);
 

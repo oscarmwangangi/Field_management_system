@@ -20,7 +20,7 @@ const sidebar: SidebarItem[] = [
   {lable:"Agents", to:"/admin/agents"},
  
 ]
-const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
+const Sidebar = ({ isOpen }: SidebarProps) => {
   return (
     <aside 
       className={`${

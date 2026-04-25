@@ -50,7 +50,7 @@ class FieldSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at', 'status')
 
     def get_latest_update(self, obj):
-        update = obj.field_updates_set.order_by('-created_at').first()
+        update = obj.field_updates.order_by('-created_at').first()
         if update:
             return {
                 'id': update.id,
@@ -62,7 +62,7 @@ class FieldSerializer(serializers.ModelSerializer):
         return None
 
     def get_days_since_update(self, obj):
-        latest = obj.field_updates_set.order_by('-created_at').first()
+        latest = obj.field_updates.order_by('-created_at').first()
         if not latest or not latest.created_at:
             # No updates — count from field creation
             delta = timezone.now() - obj.created_at

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 # class users(models.Model):
 
 #     class Role(models.TextChoices):
@@ -21,7 +22,7 @@ class fields(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     crop_type = models.CharField(max_length=100)
-    planting_date = models.DateTimeField
+    planting_date = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=100, choices=Status.choices, default=Status.ACTIVE)
     created_at = models.DateTimeField(auto_now_add=True)
     assigned_agent = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='fields')
@@ -33,7 +34,8 @@ class field_updates(models.Model):
         READY = 'ready','Ready'
         HARVESTED = 'harvested','Harvested'
 
-    field_id = models.ForeignKey(fields, on_delete=models.SET_NULL,null=True,blank=True)
+    field_id = models.ForeignKey(fields, on_delete=models.SET_NULL,null=True,blank=True, related_name='field_updates')
     updated_by = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
     notes = models.CharField(max_length=100)
     stages = models.CharField(max_length=100, choices=Stages.choices)
+    created_at = models.DateTimeField(auto_now_add=True)
