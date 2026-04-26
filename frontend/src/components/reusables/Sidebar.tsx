@@ -1,74 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logout from '../constants/logout.ts';
-
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  LayoutDashboard,
+  FileText,
+  Map,
+  Users,
+  LogOut,
+} from "lucide-react";
+import logout from "../constants/logout";
 
 interface SidebarProps {
-    isOpen: boolean,
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-// Add this above your sidebar array
+
 interface SidebarItem {
-  lable: string;
-  to?: string;          // Optional: only for navigation items
-  onClick?: () => void; 
+  label: string;
+  to: string;
+  icon: React.ReactNode;
 }
+
 const sidebar: SidebarItem[] = [
-  {lable:"Dashboard", to:"/admin/dashboard"},
-  {lable:"Report", to:"/admin/reports"},
-  {lable:"My fields", to:"/admin/fields"},
-  {lable:"Agents", to:"/admin/agents"},
- 
-]
+  { label: "Dashboard", to: "/admin/dashboard", icon: <LayoutDashboard size={18} /> },
+  { label: "Reports", to: "/admin/reports", icon: <FileText size={18} /> },
+  { label: "My Fields", to: "/admin/fields", icon: <Map size={18} /> },
+  { label: "Agents", to: "/admin/agents", icon: <Users size={18} /> },
+];
+
 const Sidebar = ({ isOpen }: SidebarProps) => {
+  const location = useLocation();
+
   return (
-    <aside 
+    <aside
       className={`${
-        isOpen ? 'w-64' : 'w-0'
-      } bg-gray-800 text-white transition-all duration-300 overflow-hidden shrink-0`}
+        isOpen ? "w-64" : "w-0"
+      } bg-slate-900 border-r border-slate-800 h-screen sticky top-0  text-white transition-all duration-300 overflow-hidden flex flex-col`}
     >
-      <div className="p-4">
-        <h2 className="text-xl font-bold mb-6 whitespace-nowrap">My App</h2>
-        <nav className="space-y-4">
-          {/* <a href="#" className="block hover:text-blue-400 whitespace-nowrap">Dashboard</a>
-          <a href="/profile" className="block hover:text-blue-400 whitespace-nowrap">Profile</a>
-          <a href="#" className="block hover:text-blue-400 whitespace-nowrap">Settings</a> */}
+      {/* Header */}
+      <div className="px-6 py-5 border-b border-slate-800">
+        <h2 className="text-xl font-semibold tracking-wide text-emerald-400">
+          CropProgress
+        </h2>
+        <p className="text-xs text-slate-400">Admin Panel</p>
+      </div>
 
-          {sidebar.map((item , index) => {
-          const  isActive = location.pathname === item.to
-            return(
-              <>
-              <div key={index}>
-                <Link to={item.to ?? '/'}
-                className={`block hover:text-blue-400 whitespace-nowrap 
-                  ${isActive ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+      {/* Nav */}
+      <nav className="flex-1 px-4 py-6 space-y-2">
+        {sidebar.map((item) => {
+          const isActive = location.pathname === item.to;
 
-                  }`}
+          return (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200
+              ${
+                isActive
+                  ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span className="opacity-80">{item.icon}</span>
+              <span className="font-medium">{item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
-
-                
-                >
-                <div className="text-sm font-medium tracking-wide">
-                  { item.lable}
-               
-
-
-                </div>
-               
-                </Link>
-                
-              </div>
-              
-              </>
-            )
-
-          }
-        )}
-        <button onClick={logout}>logout</button>
-        
-
-        </nav>
+      {/* Footer / Logout */}
+      <div className="p-4 border-t border-slate-800">
+        <button
+          onClick={logout}
+          className="w-full flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition"
+        >
+          <LogOut size={18} />
+          Logout
+        </button>
       </div>
     </aside>
   );
