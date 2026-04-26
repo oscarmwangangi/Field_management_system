@@ -34,7 +34,6 @@ It supports:
 
 ### Database
 
-* SQLite (development)
 * PostgreSQL (production-ready)
 
 ---
