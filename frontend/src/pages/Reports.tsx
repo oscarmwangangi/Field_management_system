@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API = import.meta.env.VITE_BACKEND_URL ;
 // const auth = () => ({ Authorization: `Bearer ${localStorage.getItem("access_token")}` });
 
 const authHeader = () => ({
