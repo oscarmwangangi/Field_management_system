@@ -332,7 +332,7 @@ export default function AgentDashboard() {
   );
 
   return (
-    <div style={{ fontFamily: "'Syne', 'Segoe UI', sans-serif", background: "#f3f4f6", minHeight: "100vh", padding: "20px 16px", maxWidth: 600, margin: "0 auto" }}>
+    <div style={{ fontFamily: "'Syne', 'Segoe UI', sans-serif", background: "#f3f4f6", minHeight: "100vh", padding: "20px 16px", maxWidth: 1200, margin: "0 auto" }}>
 
       <Hero name={user.first_name ?? "Agent"} total={total} atRisk={atRisk} active={active} done={done} />
 
