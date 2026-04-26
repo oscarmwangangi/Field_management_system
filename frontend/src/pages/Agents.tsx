@@ -35,8 +35,7 @@ const authHeader = () => ({
   Authorization: `Bearer ${localStorage.getItem("access")}`,
   
 });
-console.log("TOKEN:", localStorage.getItem("access"));
-console.log("HEADERS:", authHeader());
+
 // ── Stage badge ───────────────────────────────────────────────────────────────
 const stageMeta: Record<string, { label: string; bg: string; color: string }> = {
   growing:   { label: "Growing",   bg: "#dcfce7", color: "#15803d" },
@@ -185,8 +184,7 @@ function AddAgentModal({ onClose, onSuccess }: { onClose: () => void; onSuccess:
       const { data } = await axios.post(`${API_BASE}/api/agents/create/`, form, {
         headers: authHeader(),
       });
-      console.log("TOKEN:", localStorage.getItem("access"));
-console.log("HEADERS:", authHeader());
+
       setTempPassword(data.temp_password);
       onSuccess();
     } catch (err: any) {
