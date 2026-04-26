@@ -40,7 +40,6 @@ ALLOWED_HOSTS = [ "field-management-system-f6rs.onrender.com", "localhost", "fie
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", 
     "https://field-management-system-git-main-oscarmwangangis-projects.vercel.app",
-    "https://field-management-system-git-main-oscarmwangangis-projects.vercel.app/admin/dashboard",
     "https://field-management-system-f6rs.onrender.com", 
 ]
 # Application definition
