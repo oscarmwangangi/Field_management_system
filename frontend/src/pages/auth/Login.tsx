@@ -29,16 +29,19 @@ export default function Login() {
     e.preventDefault();
     setError(null);
 
-    if (!email || !password) {
+    if (!email.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
     }
-
+console.log({
+  rawEmail: JSON.stringify(email),
+  rawPassword: JSON.stringify(password),
+});
     setSubmitting(true);
     try {
       const { data } = await axios.post<LoginResponse>(`${API_BASE}/api/auth/login/`, {
-        email,
-        password,
+        email : email.trim().toLowerCase(),
+        password : password.trim(),
       });
 
       // Persist tokens + role
