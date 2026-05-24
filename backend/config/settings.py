@@ -35,12 +35,16 @@ SECRET_KEY = 'django-insecure-m5a6%9-va0d_7)j!%cpahn--^*bj)b^s@m(c)(wni#wuqnkigj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "field-management-system-f6rs.onrender.com", "localhost", "field-management-system-git-main-oscarmwangangis-projects.vercel.app"]
+ALLOWED_HOSTS = [
+    "field-management-system-f6rs.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173", 
+    "http://localhost:5173",
+    "https://field-management-system.vercel.app",
     "https://field-management-system-git-main-oscarmwangangis-projects.vercel.app",
-    "https://field-management-system-f6rs.onrender.com", 
 ]
 # Application definition
 
