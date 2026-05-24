@@ -33,10 +33,7 @@ export default function Login() {
       setError("Please fill in all fields.");
       return;
     }
-console.log({
-  rawEmail: JSON.stringify(email),
-  rawPassword: JSON.stringify(password),
-});
+
     setSubmitting(true);
     try {
       const { data } = await axios.post<LoginResponse>(`${API_BASE}/api/auth/login/`, {
